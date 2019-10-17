@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		59C854EA23581D4E00C906CE /* Pubpeer_Safari_App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */; };
+		59C854EC23581D4E00C906CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C854EB23581D4E00C906CE /* AppDelegate.swift */; };
+		59C854EF23581D4E00C906CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59C854ED23581D4E00C906CE /* Main.storyboard */; };
+		59C854F123581D4E00C906CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C854F023581D4E00C906CE /* ViewController.swift */; };
+		59C854F323581D4E00C906CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C854F223581D4E00C906CE /* Assets.xcassets */; };
+		59C854FA23581D4F00C906CE /* Pubpeer Safari App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		59C854FF23581D4F00C906CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C854FE23581D4F00C906CE /* Cocoa.framework */; };
+		59C8550223581D4F00C906CE /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8550123581D4F00C906CE /* SafariExtensionHandler.swift */; };
+		59C8550423581D4F00C906CE /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */; };
+		59C8550723581D4F00C906CE /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C8550523581D4F00C906CE /* SafariExtensionViewController.xib */; };
+		59C8550A23581D4F00C906CE /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 59C8550923581D4F00C906CE /* script.js */; };
+		59C8551A2358356900C906CE /* pubpeer-logo-black.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855182358356900C906CE /* pubpeer-logo-black.pdf */; };
+		59C8551B2358356900C906CE /* pubpeer-logo-green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855192358356900C906CE /* pubpeer-logo-green.pdf */; };
+		59C8551F23584B6E00C906CE /* DisabledHostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */; };
+		59C8552123584BA500C906CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8552023584BA500C906CE /* Constants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		59C854FB23581D4F00C906CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59C854DE23581D4E00C906CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59C854F823581D4F00C906CE;
+			remoteInfo = "Pubpeer Safari App Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		59C8551323581D4F00C906CE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				59C854FA23581D4F00C906CE /* Pubpeer Safari App Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		59C854E623581D4E00C906CE /* Pubpeer Safari App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pubpeer Safari App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pubpeer_Safari_App.entitlements; sourceTree = "<group>"; };
+		59C854EB23581D4E00C906CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		59C854EE23581D4E00C906CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		59C854F023581D4E00C906CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		59C854F223581D4E00C906CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59C854F423581D4E00C906CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pubpeer Safari App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C854FE23581D4F00C906CE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		59C8550123581D4F00C906CE /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
+		59C8550623581D4F00C906CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		59C8550823581D4F00C906CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59C8550923581D4F00C906CE /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		59C8550D23581D4F00C906CE /* Pubpeer_Safari_App_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pubpeer_Safari_App_Extension.entitlements; sourceTree = "<group>"; };
+		59C855182358356900C906CE /* pubpeer-logo-black.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pubpeer-logo-black.pdf"; sourceTree = "<group>"; };
+		59C855192358356900C906CE /* pubpeer-logo-green.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pubpeer-logo-green.pdf"; sourceTree = "<group>"; };
+		59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledHostsManager.swift; sourceTree = "<group>"; };
+		59C8552023584BA500C906CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		59C854E323581D4E00C906CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C854F623581D4F00C906CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C854FF23581D4F00C906CE /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		59C854DD23581D4E00C906CE = {
+			isa = PBXGroup;
+			children = (
+				59C8551D23584B4200C906CE /* Common */,
+				59C8551C23584B3A00C906CE /* Lib */,
+				59C854E823581D4E00C906CE /* Pubpeer Safari App */,
+				59C8550023581D4F00C906CE /* Pubpeer Safari App Extension */,
+				59C854FD23581D4F00C906CE /* Frameworks */,
+				59C854E723581D4E00C906CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		59C854E723581D4E00C906CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59C854E623581D4E00C906CE /* Pubpeer Safari App.app */,
+				59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		59C854E823581D4E00C906CE /* Pubpeer Safari App */ = {
+			isa = PBXGroup;
+			children = (
+				59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */,
+				59C854EB23581D4E00C906CE /* AppDelegate.swift */,
+				59C854ED23581D4E00C906CE /* Main.storyboard */,
+				59C854F023581D4E00C906CE /* ViewController.swift */,
+				59C854F223581D4E00C906CE /* Assets.xcassets */,
+				59C854F423581D4E00C906CE /* Info.plist */,
+			);
+			path = "Pubpeer Safari App";
+			sourceTree = "<group>";
+		};
+		59C854FD23581D4F00C906CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59C854FE23581D4F00C906CE /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59C8550023581D4F00C906CE /* Pubpeer Safari App Extension */ = {
+			isa = PBXGroup;
+			children = (
+				59C855172358356900C906CE /* images */,
+				59C8550123581D4F00C906CE /* SafariExtensionHandler.swift */,
+				59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */,
+				59C8550523581D4F00C906CE /* SafariExtensionViewController.xib */,
+				59C8550823581D4F00C906CE /* Info.plist */,
+				59C8550923581D4F00C906CE /* script.js */,
+				59C8550D23581D4F00C906CE /* Pubpeer_Safari_App_Extension.entitlements */,
+			);
+			path = "Pubpeer Safari App Extension";
+			sourceTree = "<group>";
+		};
+		59C855172358356900C906CE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				59C855182358356900C906CE /* pubpeer-logo-black.pdf */,
+				59C855192358356900C906CE /* pubpeer-logo-green.pdf */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		59C8551C23584B3A00C906CE /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		59C8551D23584B4200C906CE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				59C8552023584BA500C906CE /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		59C854E523581D4E00C906CE /* Pubpeer Safari App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App" */;
+			buildPhases = (
+				59C854E223581D4E00C906CE /* Sources */,
+				59C854E323581D4E00C906CE /* Frameworks */,
+				59C854E423581D4E00C906CE /* Resources */,
+				59C8551323581D4F00C906CE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59C854FC23581D4F00C906CE /* PBXTargetDependency */,
+			);
+			name = "Pubpeer Safari App";
+			productName = "Pubpeer Safari App";
+			productReference = 59C854E623581D4E00C906CE /* Pubpeer Safari App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App Extension" */;
+			buildPhases = (
+				59C854F523581D4F00C906CE /* Sources */,
+				59C854F623581D4F00C906CE /* Frameworks */,
+				59C854F723581D4F00C906CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pubpeer Safari App Extension";
+			productName = "Pubpeer Safari App Extension";
+			productReference = 59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		59C854DE23581D4E00C906CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Pubpeer Foundation";
+				TargetAttributes = {
+					59C854E523581D4E00C906CE = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					59C854F823581D4F00C906CE = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = 59C854E123581D4E00C906CE /* Build configuration list for PBXProject "Pubpeer Safari App" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 59C854DD23581D4E00C906CE;
+			productRefGroup = 59C854E723581D4E00C906CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				59C854E523581D4E00C906CE /* Pubpeer Safari App */,
+				59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		59C854E423581D4E00C906CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C854EA23581D4E00C906CE /* Pubpeer_Safari_App.entitlements in Resources */,
+				59C854F323581D4E00C906CE /* Assets.xcassets in Resources */,
+				59C854EF23581D4E00C906CE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C854F723581D4F00C906CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C8551B2358356900C906CE /* pubpeer-logo-green.pdf in Resources */,
+				59C8551A2358356900C906CE /* pubpeer-logo-black.pdf in Resources */,
+				59C8550723581D4F00C906CE /* SafariExtensionViewController.xib in Resources */,
+				59C8550A23581D4F00C906CE /* script.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59C854E223581D4E00C906CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C854F123581D4E00C906CE /* ViewController.swift in Sources */,
+				59C854EC23581D4E00C906CE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C854F523581D4F00C906CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C8550423581D4F00C906CE /* SafariExtensionViewController.swift in Sources */,
+				59C8550223581D4F00C906CE /* SafariExtensionHandler.swift in Sources */,
+				59C8551F23584B6E00C906CE /* DisabledHostsManager.swift in Sources */,
+				59C8552123584BA500C906CE /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59C854FC23581D4F00C906CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */;
+			targetProxy = 59C854FB23581D4F00C906CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		59C854ED23581D4E00C906CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59C854EE23581D4E00C906CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		59C8550523581D4F00C906CE /* SafariExtensionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59C8550623581D4F00C906CE /* Base */,
+			);
+			name = SafariExtensionViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		59C8550E23581D4F00C906CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		59C8550F23581D4F00C906CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		59C8551123581D4F00C906CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App Extension/Pubpeer_Safari_App_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Pubpeer Safari App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pubpeer.Pubpeer-Safari-App-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		59C8551223581D4F00C906CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App Extension/Pubpeer_Safari_App_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Pubpeer Safari App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pubpeer.Pubpeer-Safari-App-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		59C8551523581D4F00C906CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App/Pubpeer_Safari_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Pubpeer Safari App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pubpeer.Pubpeer-Safari-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		59C8551623581D4F00C906CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App/Pubpeer_Safari_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Pubpeer Safari App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pubpeer.Pubpeer-Safari-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		59C854E123581D4E00C906CE /* Build configuration list for PBXProject "Pubpeer Safari App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C8550E23581D4F00C906CE /* Debug */,
+				59C8550F23581D4F00C906CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C8551123581D4F00C906CE /* Debug */,
+				59C8551223581D4F00C906CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C8551523581D4F00C906CE /* Debug */,
+				59C8551623581D4F00C906CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 59C854DE23581D4E00C906CE /* Project object */;
+}
