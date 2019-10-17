@@ -52,10 +52,10 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNS-qY-cxL">
+                                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNS-qY-cxL">
                                             <rect key="frame" x="340" y="241" width="11" height="11"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressTemplate" imagePosition="only" alignment="center" state="on" allowsMixedState="YES" imageScaling="proportionallyUpOrDown" inset="2" id="omq-Lp-kLY">
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressTemplate" imagePosition="only" alignment="center" state="on" focusRingType="none" allowsMixedState="YES" imageScaling="proportionallyUpOrDown" inset="2" id="omq-Lp-kLY">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -88,10 +88,10 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQG-Rm-eKA">
+                                                    <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQG-Rm-eKA">
                                                         <rect key="frame" x="22" y="84" width="281" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE UNTIL NEXT VISIT" bezelStyle="texturedSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="A5c-sp-LbR">
+                                                        <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE UNTIL NEXT VISIT" bezelStyle="texturedSquare" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="A5c-sp-LbR">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -100,10 +100,10 @@
                                                             <action selector="disableOnce:" target="-2" id="hiV-Sx-JnX"/>
                                                         </connections>
                                                     </button>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWG-f0-K9l">
+                                                    <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWG-f0-K9l">
                                                         <rect key="frame" x="22" y="43" width="281" height="28"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE FOREVER" bezelStyle="texturedSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="8yI-Fy-AG7">
+                                                        <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE FOREVER" bezelStyle="texturedSquare" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="8yI-Fy-AG7">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -112,10 +112,10 @@
                                                             <action selector="disableForever:" target="-2" id="SwM-qr-e6r"/>
                                                         </connections>
                                                     </button>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cs1-Dm-iav">
+                                                    <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cs1-Dm-iav">
                                                         <rect key="frame" x="21" y="6" width="280" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="square" title="ENABLE ON THIS SITE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="2KI-kp-DLd">
+                                                        <buttonCell key="cell" type="square" title="ENABLE ON THIS SITE" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="2KI-kp-DLd">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="systemSemibold" size="12"/>
                                                         </buttonCell>
