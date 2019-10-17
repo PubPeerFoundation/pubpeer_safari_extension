@@ -87,7 +87,7 @@ class DisabledHostsManager: NSObject {
     func isDisabledHost(_ url: String) -> Bool {
         let normalizedUrl = normalizeUrl(url)
         let disabledHosts: [String]? = getAllItems() ?? []
-        let allDisabledHosts: [String]? = disabledHosts ?? [] + (DisabledHostsManager.shared.tempDisabledHosts ?? [])
+        let allDisabledHosts: [String]? = (disabledHosts ?? []) + (DisabledHostsManager.shared.tempDisabledHosts ?? [])
         return allDisabledHosts?.contains(normalizedUrl) ?? false
     }
     
