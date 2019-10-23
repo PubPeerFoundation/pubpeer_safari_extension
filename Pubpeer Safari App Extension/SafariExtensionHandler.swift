@@ -11,7 +11,6 @@ import SafariServices
 class SafariExtensionHandler: SFSafariExtensionHandler {
     
     private var _page:SFSafariPage?
-    private var _url:String?
     
     static let shared: SafariExtensionHandler = {
         let shared = SafariExtensionHandler()
@@ -24,7 +23,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             NSLog("The extension received a message (\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
             if (messageName == "pageLoaded") {
                 SafariExtensionHandler.shared._page = page
-                SafariExtensionHandler.shared._url = String(describing: properties?.url)
                 if (DisabledHostsManager.shared.isDisabledHost(String(describing: properties?.url)) == false) {
                     self.sendMessage(withName: "addPubPeerMarks", userInfo: [:])
                 }
@@ -40,6 +38,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
         // This is called when Safari's state changed in some way that would require the extension's toolbar item to be validated again.
         validationHandler(true, "")
+
+        window.getActiveTab { (activeTab) in
+            activeTab?.getActivePage(completionHandler: { (activePage) in
+                activePage?.getPropertiesWithCompletionHandler( { (properties) in
+                    SafariExtensionViewController.shared.setActivatedURL(with: properties?.url?.absoluteString)
+                })
+            })
+        }
     }
     
     override func popoverViewController() -> SFSafariExtensionViewController {
@@ -47,14 +53,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverWillShow(in window: SFSafariWindow) {
-        SafariExtensionViewController.shared.initUIElements(SafariExtensionHandler.shared._url ?? "")
-        window.getActiveTab { (activeTab) in
-            activeTab?.getActivePage(completionHandler: { (activePage) in
-                activePage?.getPropertiesWithCompletionHandler( { (properties) in
-                    SafariExtensionViewController.shared.onPopoverVisible(with: properties?.url?.absoluteString)
-                })
-            })
-        }
+        SafariExtensionViewController.shared.initUIElements()
     }
     
     func sendMessage(withName: String, userInfo: [String : Any]?) {

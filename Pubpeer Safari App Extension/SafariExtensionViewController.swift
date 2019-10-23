@@ -25,13 +25,13 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         return shared
     }()
     
-    func initUIElements(_ _url:String) {
+    func initUIElements() {
         self.btnDisableOnce.layer?.backgroundColor = NSColor.init(calibratedRed: 106/255, green: 194/255, blue: 188/255, alpha: 1).cgColor
         self.btnDisableForever.layer?.backgroundColor = NSColor.init(calibratedRed: 106/255, green: 194/255, blue: 188/255, alpha: 1).cgColor
-        self.txtDescription_2.stringValue = "on \(DisabledHostsManager.shared.normalizeUrl(self.url ?? _url ))?"
+        self.txtDescription_2.stringValue = "on \(DisabledHostsManager.shared.normalizeUrl( self.url ?? "" ))?"
     }
     
-    func onPopoverVisible(with url: String?) {
+    func setActivatedURL(with url: String?) {
         self.url = url
     }
     

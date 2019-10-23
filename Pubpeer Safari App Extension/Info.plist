@@ -32,7 +32,11 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>script.js</string>
+				<string>sanitizer.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>pubpeer.js</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>
@@ -48,6 +52,10 @@
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*.*</string>
+			</array>
 			<key>Level</key>
 			<string>All</string>
 		</dict>
