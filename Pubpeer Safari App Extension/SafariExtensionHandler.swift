@@ -53,6 +53,11 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverWillShow(in window: SFSafariWindow) {
+        window.getActiveTab { (activeTab) in
+            activeTab?.getActivePage(completionHandler: { (activePage) in
+                SafariExtensionHandler.shared._page = activePage
+            })
+        }
         SafariExtensionViewController.shared.initUIElements()
     }
     

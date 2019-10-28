@@ -59,7 +59,9 @@ Element.prototype.parents = function (selector) {
     pageDOIs = [];
 
   function getPageDOIs() {
-    pageDOIs = document.body.innerHTML.match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || [];
+    if (document && document.body && document.body.innerHTML) {
+      pageDOIs = document.body.innerHTML.match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || [];
+    }
   }
 
   function addPubPeerMarks() {
@@ -282,12 +284,17 @@ Element.prototype.parents = function (selector) {
         removeElements(['div.pp_comm', 'p.pp_articles']);
       }
     })
+    window.pubpeerMessageListenerInitialized = true;
   }
 
   document.addEventListener("DOMContentLoaded", function(event) {
     getPageDOIs();
-    initMessaging();
     safari.extension.dispatchMessage("pageLoaded");
   }, false);
+
+  if (!window.pubpeerMessageListenerInitialized) {
+    getPageDOIs();
+    initMessaging();
+  }
 
 }(Browser));
