@@ -34,7 +34,7 @@
                             <box fixedFrame="YES" boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DjF-Xq-qiG">
                                 <rect key="frame" x="10" y="10" width="366" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="9yc-Q4-aWv">
+                                <view key="contentView" wantsLayer="YES" ambiguous="YES" id="9yc-Q4-aWv">
                                     <rect key="frame" x="0.0" y="0.0" width="366" height="265"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -44,16 +44,16 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="pubpeer-logo-green" id="EHg-Ve-IYv"/>
                                         </imageView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7p-qh-xwm">
-                                            <rect key="frame" x="72" y="210" width="114" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <rect key="frame" x="72" y="210" width="123" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="left" title="PUBPEER" id="3Nr-J4-QbE">
-                                                <font key="font" metaFont="systemSemibold" size="22"/>
+                                                <font key="font" size="22" name="Helvetica-Bold"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNS-qY-cxL">
-                                            <rect key="frame" x="340" y="241" width="11" height="11"/>
+                                            <rect key="frame" x="340" y="241" width="13" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressTemplate" imagePosition="only" alignment="center" state="on" focusRingType="none" allowsMixedState="YES" imageScaling="proportionallyUpOrDown" inset="2" id="omq-Lp-kLY">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -74,7 +74,7 @@
                                                         <rect key="frame" x="16" y="155" width="287" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="center" title="Disable PubPeer extension" id="QBD-DD-2Qs">
-                                                            <font key="font" metaFont="system" size="16"/>
+                                                            <font key="font" size="16" name="Helvetica"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
@@ -83,17 +83,17 @@
                                                         <rect key="frame" x="16" y="128" width="287" height="23"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="on Pubpeer.com?" id="R72-72-N5t">
-                                                            <font key="font" metaFont="system" size="16"/>
+                                                            <font key="font" size="16" name="Helvetica"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                     <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQG-Rm-eKA">
-                                                        <rect key="frame" x="22" y="84" width="281" height="31"/>
+                                                        <rect key="frame" x="22" y="84" width="281" height="28"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE UNTIL NEXT VISIT" bezelStyle="texturedSquare" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="A5c-sp-LbR">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" size="12" name="Helvetica-Light"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
@@ -105,7 +105,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="squareTextured" title="DISABLE ON THIS SITE FOREVER" bezelStyle="texturedSquare" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="8yI-Fy-AG7">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" size="12" name="Helvetica-Light"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
@@ -117,7 +117,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="square" title="ENABLE ON THIS SITE" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="2KI-kp-DLd">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="systemSemibold" size="12"/>
+                                                            <font key="font" size="12" name="Helvetica-Bold"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" red="0.0" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
@@ -135,7 +135,7 @@
                     <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="122" y="129"/>
+            <point key="canvasLocation" x="121.5" y="129"/>
         </customView>
     </objects>
     <resources>
