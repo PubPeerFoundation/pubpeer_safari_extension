@@ -55,11 +55,15 @@ Element.prototype.parents = function (selector) {
     utm = `?utm_source=${Browser.name}&utm_medium=BrowserExtension&utm_campaign=${Browser.name}`,
     publicationIds = [],
     publications = [],
-    pageDOIs = [];
+    pageDOIs = [],
+    pagePMIDs = [],
+    isPubMed = false;
 
-  function getPageDOIs() {
+  function setInitialValues() {
     if (document && document.body && document.body.innerHTML) {
       pageDOIs = document.body.innerHTML.match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || [];
+      pagePMIDs = (document.body.innerText.match(/(PMID:\s\d+)/gi) || []).map(id => id.match(/\d+/)[0]);
+      isPubMed = location.href.toLowerCase().indexOf('pubmed') > -1 && pagePMIDs.length;
     }
   }
 
@@ -87,7 +91,7 @@ Element.prototype.parents = function (selector) {
   }
 
   function pageNeedsPubPeerLinks() {
-    return unique(pageDOIs).length > 0 && window.location.hostname.indexOf('pubpeer') === -1
+    return isPubMed ? unique(pagePMIDs).length > 0 : unique(pageDOIs).length > 0 && window.location.hostname.indexOf('pubpeer') === -1
   }
 
   function addPubPeerLinks() {
@@ -108,11 +112,18 @@ Element.prototype.parents = function (selector) {
       }
     };
 
-    request.send(JSON.stringify({
-      dois: unique(pageDOIs),
+    let param = {
       version: '0.3.3',
       browser: Browser.name
-    }));
+    }
+
+    if (isPubMed) {
+      param.pmids = unique(pagePMIDs);
+    } else {
+      param.dois = unique(pageDOIs);
+    }
+
+    request.send(JSON.stringify(param));
   }
 
   function isDOMElement (obj) {
@@ -274,17 +285,23 @@ Element.prototype.parents = function (selector) {
         removeElements(['div.pp_comm', 'p.pp_articles']);
       }
     })
-    window.pubpeerMessageListenerInitialized = true;
+    top.window.pubpeerMessageListenerInitialized = true;
   }
 
-  document.addEventListener("DOMContentLoaded", function(event) {
-    getPageDOIs();
-    safari.extension.dispatchMessage("pageLoaded");
-  }, false);
+  function isSameOrigin () {
+    return Boolean(Object.keys(top.window.location).length) && top.window === window;
+  }
 
-  if (!window.pubpeerMessageListenerInitialized) {
-    getPageDOIs();
-    initMessaging();
+  if (isSameOrigin()) {
+    top.window.document.addEventListener("DOMContentLoaded", function(event) {
+      setInitialValues();
+      safari.extension.dispatchMessage("pageLoaded");
+    }, false);
+
+    if (!top.window.pubpeerMessageListenerInitialized) {
+      setInitialValues();
+      initMessaging();
+    }
   }
 
 }(Browser));
