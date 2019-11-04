@@ -30,7 +30,6 @@ var Browser = (function () {
     }
   }).filter(Boolean).shift();
 })();
-
 Element.prototype.parents = function (selector) {
   'use strict';
   var parents = [],
@@ -48,7 +47,6 @@ Element.prototype.parents = function (selector) {
 
   return parents;
 };
-
 (function (Browser) {
   'use strict';
   var
@@ -176,7 +174,7 @@ Element.prototype.parents = function (selector) {
       const hrefText = articleCount === 1 ?
         `
           <a href="${publications[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
-            [${publications[0].title}] has comments on PubPeer
+            "${publications[0].title}" has comments on PubPeer
           </a>
         ` :
         `
