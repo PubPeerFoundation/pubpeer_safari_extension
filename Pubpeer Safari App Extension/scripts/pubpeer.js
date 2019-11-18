@@ -53,6 +53,8 @@ Element.prototype.parents = function (selector) {
     url = "https://pubpeer.com",
     address = `${url}/v3/publications?devkey=PubMed${Browser.name}`,
     utm = `?utm_source=${Browser.name}&utm_medium=BrowserExtension&utm_campaign=${Browser.name}`,
+    feedbacks = [],
+    type = '',
     publicationIds = [],
     publications = [],
     uriEncodedDOIs = {},
@@ -86,6 +88,10 @@ Element.prototype.parents = function (selector) {
     return [... new Set(array)];
   }
 
+  function uniqueByProperty(array, property) {
+    return Array.from(new Set(array.map(s => s[property]))).map(p => array.find(e => e[property] === p));
+  }
+
   function contains(selector, text) {
     var elements = document.querySelectorAll(selector);
     return [].filter.call(elements, function (element) {
@@ -115,15 +121,19 @@ Element.prototype.parents = function (selector) {
         if (!responseText) {
           return;
         }
-        responseText.feedbacks.forEach(function (publication) {
-          appendPublicationDetails(publication);
+        feedbacks = uniqueByProperty(responseText.feedbacks, 'id'); // Make sure the feedbacks are unique by id
+        determinePublicationType();
+        feedbacks.forEach(function (publication) {
+          if (publication.total_comments > 0 && type === '') {
+            appendPublicationDetails(publication);
+          }
         });
         addTopBar();
       }
     };
 
     let param = {
-      version: '0.3.4',
+      version: '1.0.0',
       browser: Browser.name
     }
 
@@ -180,10 +190,29 @@ Element.prototype.parents = function (selector) {
     }
   }
 
+  function determinePublicationType () {
+    if (feedbacks.length === 1 && feedbacks[0].updates && feedbacks[0].updates.length) {
+      switch (feedbacks[0].updates[0].type) {
+        case 'BLOGGED':
+        case 'RETRACTED':
+        case 'EXPRESSION OF CONCERN':
+          type = feedbacks[0].updates[0].type;
+          break;
+        default:
+          type = '';
+          break;
+      }
+      if (type === 'BLOGGED' && feedbacks[0].total_comments > 0) {
+        type = '';
+      }
+    }
+  }
+
   function addTopBar() {
+    const bgColor = type === 'RETRACTED' || type === 'EXPRESSION OF CONCERN' ? '#EF5753' : '#7ACCC8';
     const articleCount = publications.length;
     const topbarClassName = 'pp_articles';
-    if (articleCount > 0 && document.getElementsByClassName(topbarClassName).length === 0) {
+    if ((articleCount > 0 || type !== '') && document.getElementsByClassName(topbarClassName).length === 0) {
       let pElement = document.createElement('p');
       pElement.className = topbarClassName;
       pElement.style = `
@@ -192,24 +221,53 @@ Element.prototype.parents = function (selector) {
         position: sticky;
         z-index: 9999;
         margin: 0;
-        background-color:#7ACCC8;
+        background-color: ${bgColor};
         text-align: center !important;
         padding: 5px 8px;
         font-size: 13px;
       `;
-      const hrefText = articleCount === 1 ?
-        `
-          <a href="${publications[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
-            "${publications[0].title}" has comments on PubPeer
+      let hrefText = '';
+      if (type !== '') {
+        let title = '';
+        if (type === 'BLOGGED') {
+          title = 'Additional information on PubPeer';
+        } else if (type === 'RETRACTED') {
+          if (feedbacks[0].total_comments === 0) {
+            title = 'This article has been retracted on PubPeer';
+          } else if (feedbacks[0].total_comments === 1) {
+            title = 'This article has been retracted and there is a comment on PubPeer'
+          } else {
+            title = `This article has been retracted and there are ${feedbacks[0].total_comments} comments on PubPeer`;
+          }
+        } else if (type === 'EXPRESSION OF CONCERN') {
+          if (feedbacks[0].total_comments === 0) {
+            title = 'This article has an expression of concern on PubPeer';
+          } else if (feedbacks[0].total_comments === 1) {
+            title = 'This article has an expression of concern and there is a comment on PubPeer'
+          } else {
+            title = `This article has an expression of concern and there are ${feedbacks[0].total_comments} comments on PubPeer`;
+          }
+        }
+        hrefText = `
+          <a href="${feedbacks[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
+            ${title}
           </a>
-        ` :
-        `
-          <span style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;">
-            There are ${articleCount} articles on this page with PubPeer comments
-          </span>
         `;
+      } else {
+        hrefText = articleCount === 1 ?
+          `
+            <a href="${publications[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
+              "${publications[0].title}" has comments on PubPeer
+            </a>
+          ` :
+          `
+            <span style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;">
+              There are ${articleCount} articles on this page with PubPeer comments
+            </span>
+          `;
+      }
       pElement.innerHTML = `
-        <img src="${url}/img/logo.svg"; style="vertical-align:middle;padding-right:8px;height:25px;background-color:#7ACCC8;">
+        <img src="${url}/img/logo.svg"; style="vertical-align:middle;padding-right:8px;height:25px;background-color:${bgColor};">
           ${hrefText}
         <div id="btn-close-pubpeer-article-summary" style="float: right; font-size: 20px;line-height: 24px; padding-right: 10px; cursor: pointer; user-select: none;color: white;">×</div>
       `;
@@ -230,7 +288,7 @@ Element.prototype.parents = function (selector) {
       googleSnippetDiv = "div.s",
       bingSnippetDiv = "div.b_caption",
       duckDuckGoSnippetDiv = "div.result__body",
-      snippetsSelector = `${googleSnippetDiv}, ${bingSnippetDiv}, ${duckDuckGoSnippetDiv}, div, span`;
+      snippetsSelector = `${googleSnippetDiv}, ${bingSnippetDiv}, ${duckDuckGoSnippetDiv}, div, a, span`;
 
     let total_comments = publication.total_comments;
     let hrefText = (total_comments == 1) ? `1 comment` : `${total_comments} comments`;

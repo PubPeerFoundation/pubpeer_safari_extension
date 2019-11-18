@@ -12,6 +12,10 @@ import Cocoa
 class DisabledHostsManager: NSObject {
     private var tempDisabledHosts: [String]? = []
     static let shared: DisabledHostsManager = DisabledHostsManager()
+    private var webStoreHosts: [String] = [
+        "chrome.google.com",
+        "addons.mozilla.org"
+    ]
 
     
     func isValid(url: String) -> Bool {
@@ -88,7 +92,7 @@ class DisabledHostsManager: NSObject {
         let normalizedUrl = normalizeUrl(url)
         let disabledHosts: [String]? = getAllItems() ?? []
         let allDisabledHosts: [String]? = (disabledHosts ?? []) + (DisabledHostsManager.shared.tempDisabledHosts ?? [])
-        return allDisabledHosts?.contains(normalizedUrl) ?? false
+        return (allDisabledHosts?.contains(normalizedUrl) ?? false) || self.webStoreHosts.contains(normalizedUrl)
     }
     
     private func getAll() -> [String]? {
