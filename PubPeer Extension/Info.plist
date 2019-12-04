@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Pubpeer Safari App Extension</string>
+	<string>PubPeer</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
@@ -48,7 +48,7 @@
 			<key>Image</key>
 			<string>pubpeer-logo-black.pdf</string>
 			<key>Label</key>
-			<string>Pubpeer</string>
+			<string>PubPeer</string>
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
@@ -63,6 +63,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Pubpeer Foundation. All rights reserved.</string>
 	<key>NSHumanReadableDescription</key>
-	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
+	<string>Show links to existing PubPeer</string>
 </dict>
 </plist>

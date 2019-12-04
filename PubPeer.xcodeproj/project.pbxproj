@@ -10,12 +10,12 @@
 		59BF0876235F699000521C0F /* sanitizer.js in Resources */ = {isa = PBXBuildFile; fileRef = 59BF0875235F699000521C0F /* sanitizer.js */; };
 		59BF0879235F839E00521C0F /* pubpeer-logo-green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855192358356900C906CE /* pubpeer-logo-green.pdf */; };
 		59BF087A235F83A600521C0F /* pubpeer-logo-black.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855182358356900C906CE /* pubpeer-logo-black.pdf */; };
-		59C854EA23581D4E00C906CE /* Pubpeer_Safari_App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */; };
+		59C854EA23581D4E00C906CE /* PubPeer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 59C854E923581D4E00C906CE /* PubPeer.entitlements */; };
 		59C854EC23581D4E00C906CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C854EB23581D4E00C906CE /* AppDelegate.swift */; };
 		59C854EF23581D4E00C906CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59C854ED23581D4E00C906CE /* Main.storyboard */; };
 		59C854F123581D4E00C906CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C854F023581D4E00C906CE /* ViewController.swift */; };
 		59C854F323581D4E00C906CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C854F223581D4E00C906CE /* Assets.xcassets */; };
-		59C854FA23581D4F00C906CE /* Pubpeer Safari App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		59C854FA23581D4F00C906CE /* PubPeer Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59C854F923581D4F00C906CE /* PubPeer Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		59C854FF23581D4F00C906CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C854FE23581D4F00C906CE /* Cocoa.framework */; };
 		59C8550223581D4F00C906CE /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8550123581D4F00C906CE /* SafariExtensionHandler.swift */; };
 		59C8550423581D4F00C906CE /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */; };
@@ -33,7 +33,7 @@
 			containerPortal = 59C854DE23581D4E00C906CE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 59C854F823581D4F00C906CE;
-			remoteInfo = "Pubpeer Safari App Extension";
+			remoteInfo = "PubPeer Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				59C854FA23581D4F00C906CE /* Pubpeer Safari App Extension.appex in Embed App Extensions */,
+				59C854FA23581D4F00C906CE /* PubPeer Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,21 +53,21 @@
 
 /* Begin PBXFileReference section */
 		59BF0875235F699000521C0F /* sanitizer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sanitizer.js; sourceTree = "<group>"; };
-		59C854E623581D4E00C906CE /* Pubpeer Safari App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pubpeer Safari App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pubpeer_Safari_App.entitlements; sourceTree = "<group>"; };
+		59C854E623581D4E00C906CE /* PubPeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubPeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C854E923581D4E00C906CE /* PubPeer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PubPeer.entitlements; sourceTree = "<group>"; };
 		59C854EB23581D4E00C906CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59C854EE23581D4E00C906CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		59C854F023581D4E00C906CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		59C854F223581D4E00C906CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59C854F423581D4E00C906CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pubpeer Safari App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C854F923581D4F00C906CE /* PubPeer Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PubPeer Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C854FE23581D4F00C906CE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		59C8550123581D4F00C906CE /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
 		59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		59C8550623581D4F00C906CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		59C8550823581D4F00C906CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59C8550923581D4F00C906CE /* pubpeer.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = pubpeer.js; sourceTree = "<group>"; };
-		59C8550D23581D4F00C906CE /* Pubpeer_Safari_App_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pubpeer_Safari_App_Extension.entitlements; sourceTree = "<group>"; };
+		59C8550D23581D4F00C906CE /* PubPeer_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PubPeer_Extension.entitlements; sourceTree = "<group>"; };
 		59C855182358356900C906CE /* pubpeer-logo-black.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pubpeer-logo-black.pdf"; sourceTree = "<group>"; };
 		59C855192358356900C906CE /* pubpeer-logo-green.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pubpeer-logo-green.pdf"; sourceTree = "<group>"; };
 		59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledHostsManager.swift; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 			children = (
 				59C8551D23584B4200C906CE /* Common */,
 				59C8551C23584B3A00C906CE /* Lib */,
-				59C854E823581D4E00C906CE /* Pubpeer Safari App */,
-				59C8550023581D4F00C906CE /* Pubpeer Safari App Extension */,
+				59C854E823581D4E00C906CE /* PubPeer */,
+				59C8550023581D4F00C906CE /* PubPeer Extension */,
 				59C854FD23581D4F00C906CE /* Frameworks */,
 				59C854E723581D4E00C906CE /* Products */,
 			);
@@ -117,23 +117,23 @@
 		59C854E723581D4E00C906CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				59C854E623581D4E00C906CE /* Pubpeer Safari App.app */,
-				59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */,
+				59C854E623581D4E00C906CE /* PubPeer.app */,
+				59C854F923581D4F00C906CE /* PubPeer Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		59C854E823581D4E00C906CE /* Pubpeer Safari App */ = {
+		59C854E823581D4E00C906CE /* PubPeer */ = {
 			isa = PBXGroup;
 			children = (
-				59C854E923581D4E00C906CE /* Pubpeer_Safari_App.entitlements */,
+				59C854E923581D4E00C906CE /* PubPeer.entitlements */,
 				59C854EB23581D4E00C906CE /* AppDelegate.swift */,
 				59C854ED23581D4E00C906CE /* Main.storyboard */,
 				59C854F023581D4E00C906CE /* ViewController.swift */,
 				59C854F223581D4E00C906CE /* Assets.xcassets */,
 				59C854F423581D4E00C906CE /* Info.plist */,
 			);
-			path = "Pubpeer Safari App";
+			path = PubPeer;
 			sourceTree = "<group>";
 		};
 		59C854FD23581D4F00C906CE /* Frameworks */ = {
@@ -144,7 +144,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		59C8550023581D4F00C906CE /* Pubpeer Safari App Extension */ = {
+		59C8550023581D4F00C906CE /* PubPeer Extension */ = {
 			isa = PBXGroup;
 			children = (
 				59BF0874235F691D00521C0F /* scripts */,
@@ -153,9 +153,9 @@
 				59C8550323581D4F00C906CE /* SafariExtensionViewController.swift */,
 				59C8550523581D4F00C906CE /* SafariExtensionViewController.xib */,
 				59C8550823581D4F00C906CE /* Info.plist */,
-				59C8550D23581D4F00C906CE /* Pubpeer_Safari_App_Extension.entitlements */,
+				59C8550D23581D4F00C906CE /* PubPeer_Extension.entitlements */,
 			);
-			path = "Pubpeer Safari App Extension";
+			path = "PubPeer Extension";
 			sourceTree = "<group>";
 		};
 		59C855172358356900C906CE /* images */ = {
@@ -186,9 +186,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		59C854E523581D4E00C906CE /* Pubpeer Safari App */ = {
+		59C854E523581D4E00C906CE /* PubPeer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App" */;
+			buildConfigurationList = 59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "PubPeer" */;
 			buildPhases = (
 				59C854E223581D4E00C906CE /* Sources */,
 				59C854E323581D4E00C906CE /* Frameworks */,
@@ -200,14 +200,14 @@
 			dependencies = (
 				59C854FC23581D4F00C906CE /* PBXTargetDependency */,
 			);
-			name = "Pubpeer Safari App";
+			name = PubPeer;
 			productName = "Pubpeer Safari App";
-			productReference = 59C854E623581D4E00C906CE /* Pubpeer Safari App.app */;
+			productReference = 59C854E623581D4E00C906CE /* PubPeer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */ = {
+		59C854F823581D4F00C906CE /* PubPeer Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App Extension" */;
+			buildConfigurationList = 59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "PubPeer Extension" */;
 			buildPhases = (
 				59C854F523581D4F00C906CE /* Sources */,
 				59C854F623581D4F00C906CE /* Frameworks */,
@@ -217,9 +217,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pubpeer Safari App Extension";
-			productName = "Pubpeer Safari App Extension";
-			productReference = 59C854F923581D4F00C906CE /* Pubpeer Safari App Extension.appex */;
+			name = "PubPeer Extension";
+			productName = "PubPeer Extension";
+			productReference = 59C854F923581D4F00C906CE /* PubPeer Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -229,7 +229,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Pubpeer Foundation";
 				TargetAttributes = {
 					59C854E523581D4E00C906CE = {
@@ -240,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 59C854E123581D4E00C906CE /* Build configuration list for PBXProject "Pubpeer Safari App" */;
+			buildConfigurationList = 59C854E123581D4E00C906CE /* Build configuration list for PBXProject "PubPeer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -253,8 +253,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				59C854E523581D4E00C906CE /* Pubpeer Safari App */,
-				59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */,
+				59C854E523581D4E00C906CE /* PubPeer */,
+				59C854F823581D4F00C906CE /* PubPeer Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59BF087A235F83A600521C0F /* pubpeer-logo-black.pdf in Resources */,
-				59C854EA23581D4E00C906CE /* Pubpeer_Safari_App.entitlements in Resources */,
+				59C854EA23581D4E00C906CE /* PubPeer.entitlements in Resources */,
 				59BF0879235F839E00521C0F /* pubpeer-logo-green.pdf in Resources */,
 				59C854F323581D4E00C906CE /* Assets.xcassets in Resources */,
 				59C854EF23581D4E00C906CE /* Main.storyboard in Resources */,
@@ -312,7 +312,7 @@
 /* Begin PBXTargetDependency section */
 		59C854FC23581D4F00C906CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 59C854F823581D4F00C906CE /* Pubpeer Safari App Extension */;
+			target = 59C854F823581D4F00C906CE /* PubPeer Extension */;
 			targetProxy = 59C854FB23581D4F00C906CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -453,11 +453,12 @@
 		59C8551123581D4F00C906CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App Extension/Pubpeer_Safari_App_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "PubPeer Extension/PubPeer_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4WJQGN77FB;
-				INFOPLIST_FILE = "Pubpeer Safari App Extension/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "PubPeer Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -473,11 +474,12 @@
 		59C8551223581D4F00C906CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App Extension/Pubpeer_Safari_App_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "PubPeer Extension/PubPeer_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4WJQGN77FB;
-				INFOPLIST_FILE = "Pubpeer Safari App Extension/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "PubPeer Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -495,12 +497,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App/Pubpeer_Safari_App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = PubPeer/PubPeer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4WJQGN77FB;
-				INFOPLIST_FILE = "Pubpeer Safari App/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = PubPeer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -517,12 +520,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pubpeer Safari App/Pubpeer_Safari_App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = PubPeer/PubPeer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4WJQGN77FB;
-				INFOPLIST_FILE = "Pubpeer Safari App/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = PubPeer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -537,7 +541,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		59C854E123581D4E00C906CE /* Build configuration list for PBXProject "Pubpeer Safari App" */ = {
+		59C854E123581D4E00C906CE /* Build configuration list for PBXProject "PubPeer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59C8550E23581D4F00C906CE /* Debug */,
@@ -546,7 +550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App Extension" */ = {
+		59C8551023581D4F00C906CE /* Build configuration list for PBXNativeTarget "PubPeer Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59C8551123581D4F00C906CE /* Debug */,
@@ -555,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "Pubpeer Safari App" */ = {
+		59C8551423581D4F00C906CE /* Build configuration list for PBXNativeTarget "PubPeer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59C8551523581D4F00C906CE /* Debug */,

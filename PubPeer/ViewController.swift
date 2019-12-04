@@ -15,7 +15,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.appNameLabel.stringValue = "Pubpeer Safari App";
+        self.appNameLabel.stringValue = "PubPeer";
     }
     
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
