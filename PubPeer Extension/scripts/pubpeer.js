@@ -64,14 +64,14 @@ Element.prototype.parents = function (selector) {
 
   function setInitialValues() {
     if (document && document.body && document.body.innerHTML) {
-      pageDOIs = (document.body.innerHTML.match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || []).map(doi => {
+      pageDOIs = (document.body.innerHTML.replace(/<[^>]+>/g, ' ').match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || []).map(doi => {
         const decodedDOI = decodeURIComponent(doi);
         if (doi !== decodedDOI) {
           uriEncodedDOIs[decodedDOI.toLowerCase()] = doi;
         }
         return decodedDOI;
       });
-      pagePMIDs = (document.body.innerText.match(/(PMID:\s\d+)/gi) || []).map(id => id.match(/\d+/)[0]);
+      pagePMIDs = (document.body.innerText.replace(/\n/g, '').match(/(PMID:\s\d+)/gi) || []).map(id => id.match(/\d+/)[0]);
       isPubMed = location.href.toLowerCase().indexOf('pubmed') > -1 && pagePMIDs.length || !pageDOIs.length;
     }
   }
@@ -82,14 +82,6 @@ Element.prototype.parents = function (selector) {
     if (pageNeedsPubPeerLinks()) {
       addPubPeerLinks();
     }
-  }
-
-  function unique(array) {
-    return [... new Set(array)];
-  }
-
-  function uniqueByProperty(array, property) {
-    return Array.from(new Set(array.map(s => s[property]))).map(p => array.find(e => e[property] === p));
   }
 
   function contains(selector, text) {
@@ -131,7 +123,7 @@ Element.prototype.parents = function (selector) {
     };
 
     let param = {
-      version: '1.0.1',
+      version: '1.1.0',
       browser: Browser.name
     }
 
@@ -216,8 +208,37 @@ Element.prototype.parents = function (selector) {
     }
   }
 
+  function generateNotificationTitle (publication) {
+    let title = '';
+    const type = getPublicationType(publication);
+    if (type === 'BLOGGED') {
+      title = 'Additional information on PubPeer';
+    } else if (type === 'RETRACTED') {
+      if (publication.total_comments === 0) {
+        title = 'This article has been retracted on PubPeer';
+      } else if (publication.total_comments === 1) {
+        title = 'This article has been retracted and there is a comment on PubPeer';
+      } else {
+        title = `This article has been retracted and there are ${publication.total_comments} comments on PubPeer`;
+      }
+    } else if (type === 'EXPRESSION OF CONCERN') {
+      if (publication.total_comments === 0) {
+        title = 'This article has an expression of concern on PubPeer';
+      } else if (publication.total_comments === 1) {
+        title = 'This article has an expression of concern and there is a comment on PubPeer';
+      } else {
+        title = `This article has an expression of concern and there are ${publication.total_comments} comments on PubPeer`;
+      }
+    }
+    return title;
+  }
+
+  function getBackgroundColor (type) {
+    return type === 'RETRACTED' || type === 'EXPRESSION OF CONCERN' ? '#EF5753' : '#7ACCC8';
+  }
+
   function addTopBar() {
-    const bgColor = type === 'RETRACTED' || type === 'EXPRESSION OF CONCERN' ? '#EF5753' : '#7ACCC8';
+    const bgColor = getBackgroundColor(type);
     const articleCount = publications.length;
     const topbarClassName = 'pp_articles';
     if ((articleCount > 0 || type !== '') && document.getElementsByClassName(topbarClassName).length === 0) {
@@ -236,26 +257,7 @@ Element.prototype.parents = function (selector) {
       `;
       let hrefText = '';
       if (type !== '') {
-        let title = '';
-        if (type === 'BLOGGED') {
-          title = 'Additional information on PubPeer';
-        } else if (type === 'RETRACTED') {
-          if (feedbacks[0].total_comments === 0) {
-            title = 'This article has been retracted on PubPeer';
-          } else if (feedbacks[0].total_comments === 1) {
-            title = 'This article has been retracted and there is a comment on PubPeer'
-          } else {
-            title = `This article has been retracted and there are ${feedbacks[0].total_comments} comments on PubPeer`;
-          }
-        } else if (type === 'EXPRESSION OF CONCERN') {
-          if (feedbacks[0].total_comments === 0) {
-            title = 'This article has an expression of concern on PubPeer';
-          } else if (feedbacks[0].total_comments === 1) {
-            title = 'This article has an expression of concern and there is a comment on PubPeer'
-          } else {
-            title = `This article has an expression of concern and there are ${feedbacks[0].total_comments} comments on PubPeer`;
-          }
-        }
+        const title = generateNotificationTitle(feedbacks[0]);
         hrefText = `
           <a href="${feedbacks[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
             ${title}
@@ -299,29 +301,11 @@ Element.prototype.parents = function (selector) {
       snippetsSelector = `${googleSnippetDiv}, ${bingSnippetDiv}, ${duckDuckGoSnippetDiv}, div, a, span`;
 
     const publicationType = getPublicationType(publication);
-    const bgColor = publicationType === 'RETRACTED' || publicationType === 'EXPRESSION OF CONCERN' ? '#EF5753' : '#7ACCC8';
+    const bgColor = getBackgroundColor(publicationType);
     let total_comments = publication.total_comments;
     let hrefText = '';
     if (publicationType !== '') {
-      if (publicationType === 'BLOGGED') {
-        hrefText = 'Additional information on PubPeer';
-      } else if (publicationType === 'RETRACTED') {
-        if (total_comments === 0) {
-          hrefText = 'This article has been retracted on PubPeer';
-        } else if (total_comments === 1) {
-          hrefText = 'This article has been retracted and there is a comment on PubPeer'
-        } else {
-          hrefText = `This article has been retracted and there are ${total_comments} comments on PubPeer`;
-        }
-      } else if (publicationType === 'EXPRESSION OF CONCERN') {
-        if (total_comments === 0) {
-          hrefText = 'This article has an expression of concern on PubPeer';
-        } else if (total_comments === 1) {
-          hrefText = 'This article has an expression of concern and there is a comment on PubPeer'
-        } else {
-          hrefText = `This article has an expression of concern and there are ${total_comments} comments on PubPeer`;
-        }
-      }
+      hrefText = generateNotificationTitle(publication);
       if (total_comments > 0) {
         hrefText += ` (by: ${publication.users})`;
       }
