@@ -49,7 +49,12 @@ Element.prototype.parents = function (selector) {
 };
 (function (Browser) {
   'use strict';
-  var
+  const innerHTMLHosts = [
+    'www.embopress.org',
+    'www.pnas.org',
+    'www.sciencedirect.com'
+  ];
+  let
     url = "https://pubpeer.com",
     address = `${url}/v3/publications?devkey=PubMed${Browser.name}`,
     utm = `?utm_source=${Browser.name}&utm_medium=BrowserExtension&utm_campaign=${Browser.name}`,
@@ -60,6 +65,7 @@ Element.prototype.parents = function (selector) {
     uriEncodedDOIs = {},
     pageDOIs = [],
     pagePMIDs = [],
+    pagePmidOrDoiCount = 0,
     isPubMed = false;
 
   function setInitialValues() {
@@ -87,11 +93,15 @@ Element.prototype.parents = function (selector) {
   function contains(selector, text) {
     var elements = document.querySelectorAll(selector);
     return [].filter.call(elements, function (element) {
-      if (typeof element.innerText === 'string') {
-        return element.innerText.toLowerCase().includes(text.toLowerCase());
+      if (typeof element[getTargetAttr()] === 'string') {
+        return element[getTargetAttr()].toLowerCase().includes(text.toLowerCase());
       }
       return false;
     });
+  }
+ 
+  function getTargetAttr() {
+    return innerHTMLHosts.includes(location.host) ? 'innerHTML' : 'innerText';
   }
 
   function informExtensionInstalled() {
@@ -123,14 +133,16 @@ Element.prototype.parents = function (selector) {
     };
 
     let param = {
-      version: '1.1.0',
+      version: '1.3.1',
       browser: Browser.name
     }
 
     if (isPubMed) {
       param.pmids = unique(pagePMIDs);
+      pagePmidOrDoiCount = param.pmids.length;
     } else {
       param.dois = unique(pageDOIs);
+      pagePmidOrDoiCount = param.dois.length;
     }
 
     request.send(JSON.stringify(param));
@@ -208,26 +220,27 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function generateNotificationTitle (publication) {
+  function generateNotificationTitle (publication, isTopBar = false) {
     let title = '';
     const type = getPublicationType(publication);
+    const titlePrefix = isTopBar && feedbacks.length === 1 && pagePmidOrDoiCount > 1 ? 'An article on this page' : 'This article';
     if (type === 'BLOGGED') {
       title = 'Additional information on PubPeer';
     } else if (type === 'RETRACTED') {
       if (publication.total_comments === 0) {
-        title = 'This article has been retracted on PubPeer';
+        title = `${titlePrefix} has been retracted on PubPeer`;
       } else if (publication.total_comments === 1) {
-        title = 'This article has been retracted and there is a comment on PubPeer';
+        title = `${titlePrefix} has been retracted and there is a comment on PubPeer`;
       } else {
-        title = `This article has been retracted and there are ${publication.total_comments} comments on PubPeer`;
+        title = `${titlePrefix} has been retracted and there are ${publication.total_comments} comments on PubPeer`;
       }
     } else if (type === 'EXPRESSION OF CONCERN') {
       if (publication.total_comments === 0) {
-        title = 'This article has an expression of concern on PubPeer';
+        title = `${titlePrefix} has an expression of concern on PubPeer`;
       } else if (publication.total_comments === 1) {
-        title = 'This article has an expression of concern and there is a comment on PubPeer';
+        title = `${titlePrefix} has an expression of concern and there is a comment on PubPeer`;
       } else {
-        title = `This article has an expression of concern and there are ${publication.total_comments} comments on PubPeer`;
+        title = `${titlePrefix} has an expression of concern and there are ${publication.total_comments} comments on PubPeer`;
       }
     }
     return title;
@@ -257,7 +270,7 @@ Element.prototype.parents = function (selector) {
       `;
       let hrefText = '';
       if (type !== '') {
-        const title = generateNotificationTitle(feedbacks[0]);
+        const title = generateNotificationTitle(feedbacks[0], true);
         hrefText = `
           <a href="${feedbacks[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
             ${title}
@@ -265,7 +278,7 @@ Element.prototype.parents = function (selector) {
         `;
       } else {
         hrefText = articleCount === 1 ?
-          `
+          Sanitizer.escapeHTML`
             <a href="${publications[0].url + utm}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
               "${publications[0].title}" has comments on PubPeer
             </a>
@@ -277,9 +290,9 @@ Element.prototype.parents = function (selector) {
           `;
       }
       pElement.innerHTML = `
-        <img src="${url}/img/logo.svg"; style="vertical-align:middle;padding-right:8px;height:25px;background-color:${bgColor};">
+        <img src="${url}/img/logo.svg" style="display:inline;vertical-align:middle;padding-right:8px;height:25px;background-color:${bgColor};"></img>
           ${hrefText}
-        <div id="btn-close-pubpeer-article-summary" style="float: right; font-size: 20px;line-height: 24px; padding-right: 10px; cursor: pointer; user-select: none;color: white;">×</div>
+        <div id="btn-close-pubpeer-article-summary" style="float:right;font-size:20px;line-height:24px;padding-right:10px;cursor: pointer;user-select:none;color:white;">×</div>
       `;
       document.body.prepend(pElement);
       onAfterAddingTopBar();
@@ -335,8 +348,8 @@ Element.prototype.parents = function (selector) {
     for (let k = 0; k < elementsWithDois; k++) { //try each element that contains a matched DOI
       if (aDoiElement[k].element.parentNode.getElementsByClassName('pp_comm').length === 0 && isVisible(aDoiElement[k].element)) {
         aDoiElement[k].element.insertAdjacentHTML('afterend',
-          Sanitizer.escapeHTML`<div class="pp_comm" style="margin: 1rem 0;display: flex;width: calc(100% - 16px);background-color: ${bgColor};padding: 5px 8px;font-size: 13px;border-radius:6px;">
-            <img src="${url}/img/logo.svg"; style="vertical-align:middle;padding-right:8px;height:25px;background-color: ${bgColor};"><img>
+          Sanitizer.escapeHTML`<div class="pp_comm" style="margin: 1rem 0;display: flex;max-width: calc(100% - 16px);background-color: ${bgColor};padding: 5px 8px;font-size: 13px;border-radius:6px;">
+            <img src="${url}/img/logo.svg" style="vertical-align:middle;padding-right:8px;height:25px;background-color: ${bgColor};"></img>
             <div style="align-items: center;display: flex;">
               <a href="${linkToComments}" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
                 ${hrefText}
