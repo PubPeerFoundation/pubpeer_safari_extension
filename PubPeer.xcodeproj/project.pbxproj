@@ -204,7 +204,7 @@
 				59C854FC23581D4F00C906CE /* PBXTargetDependency */,
 			);
 			name = PubPeer;
-			productName = "Pubpeer Safari App";
+			productName = "PubPeer";
 			productReference = 59C854E623581D4E00C906CE /* PubPeer.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -233,7 +233,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Pubpeer Foundation";
+				ORGANIZATIONNAME = "PubPeer Foundation";
 				TargetAttributes = {
 					59C854E523581D4E00C906CE = {
 						CreatedOnToolsVersion = 11.0;
