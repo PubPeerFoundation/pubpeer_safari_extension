@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		599859A023A29A6100844840 /* utils.js in Resources */ = {isa = PBXBuildFile; fileRef = 5998599F23A29A6100844840 /* utils.js */; };
+		59A80FD423F46B9A00A84935 /* domains.js in Resources */ = {isa = PBXBuildFile; fileRef = 59A80FD323F46B9A00A84935 /* domains.js */; };
 		59BF0876235F699000521C0F /* sanitizer.js in Resources */ = {isa = PBXBuildFile; fileRef = 59BF0875235F699000521C0F /* sanitizer.js */; };
 		59BF0879235F839E00521C0F /* pubpeer-logo-green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855192358356900C906CE /* pubpeer-logo-green.pdf */; };
 		59BF087A235F83A600521C0F /* pubpeer-logo-black.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855182358356900C906CE /* pubpeer-logo-black.pdf */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		5998599F23A29A6100844840 /* utils.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = utils.js; sourceTree = "<group>"; };
+		59A80FD323F46B9A00A84935 /* domains.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = domains.js; sourceTree = "<group>"; };
 		59BF0875235F699000521C0F /* sanitizer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sanitizer.js; sourceTree = "<group>"; };
 		59C854E623581D4E00C906CE /* PubPeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubPeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C854E923581D4E00C906CE /* PubPeer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PubPeer.entitlements; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		59BF0874235F691D00521C0F /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				59A80FD323F46B9A00A84935 /* domains.js */,
 				5998599F23A29A6100844840 /* utils.js */,
 				59BF0875235F699000521C0F /* sanitizer.js */,
 				59C8550923581D4F00C906CE /* pubpeer.js */,
@@ -204,7 +207,7 @@
 				59C854FC23581D4F00C906CE /* PBXTargetDependency */,
 			);
 			name = PubPeer;
-			productName = "PubPeer";
+			productName = PubPeer;
 			productReference = 59C854E623581D4E00C906CE /* PubPeer.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -283,6 +286,7 @@
 				59C8551A2358356900C906CE /* pubpeer-logo-black.pdf in Resources */,
 				59BF0876235F699000521C0F /* sanitizer.js in Resources */,
 				59C8550723581D4F00C906CE /* SafariExtensionViewController.xib in Resources */,
+				59A80FD423F46B9A00A84935 /* domains.js in Resources */,
 				599859A023A29A6100844840 /* utils.js in Resources */,
 				59C8550A23581D4F00C906CE /* pubpeer.js in Resources */,
 			);
