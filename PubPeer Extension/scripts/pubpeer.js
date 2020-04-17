@@ -76,7 +76,7 @@ Element.prototype.parents = function (selector) {
 
   function setInitialValues() {
     if (document && document.body && document.body.innerHTML) {
-      pageUrls = extractValidUrls(),
+      pageUrls = extractValidUrls();
       pageDOIs = (document.body.innerHTML.replace(/<[^>]+>/g, ' ').match(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/gi) || []).map(doi => {
         const decodedDOI = decodeURIComponent(doi);
         if (doi !== decodedDOI) {
@@ -103,8 +103,7 @@ Element.prototype.parents = function (selector) {
       if (!isValidUrl(url)) {
         return false;
       }
-      const possibleHostNames = extractHostNameFromUrl(url);
-      return allowedDomains.includes(possibleHostNames[0]) || allowedDomains.includes(possibleHostNames[1]);
+      return Domains.validate(url);
     });
     urls = urls.map(url => {
       const decodedUrl = decodeURIComponent(url);
@@ -177,7 +176,7 @@ Element.prototype.parents = function (selector) {
     };
 
     let param = {
-      version: '1.4.2',
+      version: '1.5.1',
       browser: Browser.name,
       urls: pageUrls
     }
@@ -193,11 +192,11 @@ Element.prototype.parents = function (selector) {
     request.send(JSON.stringify(param));
   }
 
-  function isDOMElement (obj) {
+  function isDOMElement(obj) {
     return !!(obj && obj.nodeType === 1);
   }
 
-  function isVisible (el) {
+  function isVisible(el) {
     const style = window.getComputedStyle(el);
     return !(el.offsetParent === null || style.display === 'none')
   }
@@ -237,7 +236,7 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function getPublicationType (publication) {
+  function getPublicationType(publication) {
     let publicationType = '';
     if (publication.updates && publication.updates.length) {
       switch (publication.updates[0].type) {
@@ -257,7 +256,7 @@ Element.prototype.parents = function (selector) {
     return publicationType;
   }
 
-  function determinePageType () {
+  function determinePageType() {
     if (feedbacks.length === 1) {
       type = getPublicationType(feedbacks[0]);
     } else {
@@ -265,7 +264,7 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function generateNotificationTitle (publication, isTopBar = false) {
+  function generateNotificationTitle(publication, isTopBar = false) {
     let title = '';
     const type = getPublicationType(publication);
     const titlePrefix = isTopBar && feedbacks.length === 1 && pagePmidOrDoiCount > 1 ? 'An article on this page' : 'This article';
@@ -291,7 +290,7 @@ Element.prototype.parents = function (selector) {
     return title;
   }
 
-  function getBackgroundColor (type) {
+  function getBackgroundColor(type) {
     return type === 'RETRACTED' || type === 'EXPRESSION OF CONCERN' ? '#EF5753' : '#7ACCC8';
   }
 
@@ -412,7 +411,7 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function removeElements (selectors) {
+  function removeElements(selectors) {
     if (selectors.length) {
       selectors.forEach(selector => {
         removeElementsBySelector(selector);
@@ -420,7 +419,7 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function removeElementsBySelector (selector) {
+  function removeElementsBySelector(selector) {
     var PPElements = document.querySelectorAll(selector);
     if (PPElements.length) {
       PPElements.forEach(element => {
@@ -431,7 +430,7 @@ Element.prototype.parents = function (selector) {
     }
   }
 
-  function initMessaging () {
+  function initMessaging() {
     safari.self.addEventListener('message', ({ name }) => {
       if (name === 'addPubPeerMarks') {
         addPubPeerMarks();
@@ -442,12 +441,12 @@ Element.prototype.parents = function (selector) {
     top.window.pubpeerMessageListenerInitialized = true;
   }
 
-  function isSameOrigin () {
+  function isSameOrigin() {
     return Boolean(Object.keys(top.window.location).length) && top.window === window;
   }
 
   if (isSameOrigin()) {
-    top.window.document.addEventListener("DOMContentLoaded", function(event) {
+    top.window.document.addEventListener("DOMContentLoaded", function (event) {
       setInitialValues();
       safari.extension.dispatchMessage("pageLoaded");
     }, false);
