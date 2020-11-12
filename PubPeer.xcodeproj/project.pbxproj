@@ -27,6 +27,9 @@
 		59C8551B2358356900C906CE /* pubpeer-logo-green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59C855192358356900C906CE /* pubpeer-logo-green.pdf */; };
 		59C8551F23584B6E00C906CE /* DisabledHostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */; };
 		59C8552123584BA500C906CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8552023584BA500C906CE /* Constants.swift */; };
+		961B8B3D255D38FC009E8690 /* browser.js in Resources */ = {isa = PBXBuildFile; fileRef = 961B8B3A255D38FC009E8690 /* browser.js */; };
+		961B8B3E255D38FC009E8690 /* element.js in Resources */ = {isa = PBXBuildFile; fileRef = 961B8B3B255D38FC009E8690 /* element.js */; };
+		961B8B3F255D38FC009E8690 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 961B8B3C255D38FC009E8690 /* content.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		59C855192358356900C906CE /* pubpeer-logo-green.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pubpeer-logo-green.pdf"; sourceTree = "<group>"; };
 		59C8551E23584B6E00C906CE /* DisabledHostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledHostsManager.swift; sourceTree = "<group>"; };
 		59C8552023584BA500C906CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		961B8B3A255D38FC009E8690 /* browser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = browser.js; sourceTree = "<group>"; };
+		961B8B3B255D38FC009E8690 /* element.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = element.js; sourceTree = "<group>"; };
+		961B8B3C255D38FC009E8690 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,9 @@
 		59BF0874235F691D00521C0F /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				961B8B3A255D38FC009E8690 /* browser.js */,
+				961B8B3C255D38FC009E8690 /* content.js */,
+				961B8B3B255D38FC009E8690 /* element.js */,
 				59A80FD323F46B9A00A84935 /* domains.js */,
 				5998599F23A29A6100844840 /* utils.js */,
 				59BF0875235F699000521C0F /* sanitizer.js */,
@@ -283,8 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				59C8551B2358356900C906CE /* pubpeer-logo-green.pdf in Resources */,
+				961B8B3D255D38FC009E8690 /* browser.js in Resources */,
 				59C8551A2358356900C906CE /* pubpeer-logo-black.pdf in Resources */,
 				59BF0876235F699000521C0F /* sanitizer.js in Resources */,
+				961B8B3F255D38FC009E8690 /* content.js in Resources */,
+				961B8B3E255D38FC009E8690 /* element.js in Resources */,
 				59C8550723581D4F00C906CE /* SafariExtensionViewController.xib in Resources */,
 				59A80FD423F46B9A00A84935 /* domains.js in Resources */,
 				599859A023A29A6100844840 /* utils.js in Resources */,
