@@ -1,18 +1,19 @@
 class PubPeer {
   constructor(Browser) {
     this.innerHTMLHosts = [
-      "www.embopress.org",
-      "www.pnas.org",
-      "www.sciencedirect.com",
+      'www.embopress.org',
+      'www.pnas.org',
+      'www.sciencedirect.com',
     ];
-    this.url = "https://pubpeer.com";
+    this.url = 'https://pubpeer.com';
     this.apiUrl = `${this.url}/v3/publications?devkey=PubMed${Browser.name}`;
     this.utm = `?utm_source=${Browser.name}&utm_medium=BrowserExtension&utm_campaign=${Browser.name}`;
     this.feedbacks = [];
     this.urlFeedbacks = [];
-    this.type = "";
+    this.type = '';
     this.publicationIds = [];
     this.publications = [];
+    this.pubpeerUrls = [];
     this.uriEncodedUrls = {};
     this.pageUrls = this.extractValidUrls();
     this.uriEncodedDOIs = {};
@@ -31,7 +32,7 @@ class PubPeer {
 
   extractValidUrls() {
     let urls = Array.prototype.map.call(
-      document.querySelectorAll("a"),
+      document.querySelectorAll('a'),
       (el) => el.href
     );
     urls = urls.filter((url) => {
@@ -57,7 +58,7 @@ class PubPeer {
       lowerCaseText = 'href="' + lowerCaseText;
     }
     return [].filter.call(elements, (element) => {
-      if (typeof element[this.targetAttr] === "string") {
+      if (typeof element[this.targetAttr] === 'string') {
         return element[this.targetAttr].toLowerCase().includes(lowerCaseText);
       }
       return false;
@@ -80,13 +81,13 @@ class PubPeer {
 
   get pagePMIDs() {
     return (
-      document.body.innerText.replace(/\n/g, "").match(/(PMID:?\s\d+)/gi) || []
+      document.body.innerText.replace(/\n/g, '').match(/(PMID:?\s\d+)/gi) || []
     ).map((id) => id.match(/\d+/)[0]);
   }
 
   get isPubMed() {
     return (
-      (location.href.toLowerCase().indexOf("pubmed") > -1 &&
+      (location.href.toLowerCase().indexOf('pubmed') > -1 &&
         this.pagePMIDs.length) ||
       !this.pageDOIs.length
     );
@@ -94,8 +95,8 @@ class PubPeer {
 
   get targetAttr() {
     return this.innerHTMLHosts.includes(location.host) || this.processingUrl
-      ? "innerHTML"
-      : "innerText";
+      ? 'innerHTML'
+      : 'innerText';
   }
 
   get uriEncodedIds() {
@@ -103,7 +104,7 @@ class PubPeer {
   }
 
   informExtensionInstalled() {
-    localStorage.setItem("pubpeer-extension", true);
+    localStorage.setItem('pubpeer-extension', true);
   }
 
   pageNeedsPubPeerLinks() {
@@ -111,14 +112,14 @@ class PubPeer {
       (unique(this.pageDOIs).length > 0 ||
         unique(this.pagePMIDs).length > 0 ||
         unique(this.pageUrls).length > 0) &&
-      window.location.hostname.indexOf("pubpeer") === -1
+      window.location.hostname.indexOf('pubpeer') === -1
     );
   }
 
   addPubPeerLinks() {
     let request = new XMLHttpRequest();
-    request.open("POST", this.apiUrl, true);
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.open('POST', this.apiUrl, true);
+    request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
@@ -128,7 +129,7 @@ class PubPeer {
         }
         this.feedbacks =
           (responseText.feedbacks &&
-            uniqueByProperty(responseText.feedbacks, "id")) ||
+            uniqueByProperty(responseText.feedbacks, 'id')) ||
           []; // Make sure the feedbacks are unique by id
         this.urlFeedbacks = responseText.urlFeedbacks || [];
         this.determinePageType();
@@ -145,7 +146,7 @@ class PubPeer {
     };
 
     let param = {
-      version: "1.6.0",
+      version: '1.6.2',
       browser: Browser.name,
       urls: this.pageUrls,
     };
@@ -167,7 +168,7 @@ class PubPeer {
 
   isVisible(el) {
     const style = window.getComputedStyle(el);
-    return !(el.offsetParent === null || style.display === "none");
+    return !(el.offsetParent === null || style.display === 'none');
   }
 
   isBiorxivOnlyComment(publication) {
@@ -175,7 +176,7 @@ class PubPeer {
       publication.total_comments === 0 &&
       publication.updates[0].content &&
       publication.updates[0].content.type &&
-      publication.updates[0].content.type === "biorxiv_comment"
+      publication.updates[0].content.type === 'biorxiv_comment'
     ) {
       return true;
     }
@@ -183,54 +184,69 @@ class PubPeer {
   }
 
   onAfterAddingTopBar() {
-    const articleElement = document.querySelector("p.pp_articles");
+    const articleElement = document.querySelector('p.pp_articles');
     switch (location.hostname) {
-      case "www.cell.com":
+      case 'www.cell.com':
         const headerElement = document.querySelector(
-          "header.header.base.fixed"
+          'header.header.base.fixed'
         );
         if (
           this.isDOMElement(headerElement) &&
           this.isDOMElement(articleElement)
         ) {
-          headerElement.style.top = "35px";
+          headerElement.style.top = '35px';
           articleElement.style.zIndex = 1000;
-          articleElement.style.width = "100vw";
+          articleElement.style.width = '100vw';
         }
         break;
-      case "journals.plos.org":
-        document.body.style.height = "auto";
+      case 'journals.plos.org':
+        document.body.style.height = 'auto';
         break;
       default:
         break;
     }
     this.initTopBarRemoveEvent();
+    this.initHeaderSubContentToggleEvent();
+  }
+
+  initHeaderSubContentToggleEvent() {
+    const toggleElement = document.getElementById('pubpeer-toggle-subcontent');
+    if (toggleElement) {
+      toggleElement.onclick = function () {
+        const subContent = document.getElementById('pubpeer-header-subcontent');
+        if (subContent) {
+          subContent.style.display =
+            subContent.style.display === 'none' ? 'block' : 'none';
+        }
+      };
+    }
   }
 
   initTopBarRemoveEvent() {
     const closeElement = document.getElementById(
-      "btn-close-pubpeer-article-summary"
+      'btn-close-pubpeer-article-summary'
     );
     if (closeElement) {
+      const that = this;
       closeElement.onclick = function () {
-        this.parentNode.remove();
-        this.onAfterRemovingTopBar();
+        this.parentNode.parentNode.remove();
+        that.onAfterRemovingTopBar();
       };
     }
   }
 
   onAfterRemovingTopBar() {
     switch (location.hostname) {
-      case "www.cell.com":
+      case 'www.cell.com':
         const headerElement = document.querySelector(
-          "header.header.base.fixed"
+          'header.header.base.fixed'
         );
         if (this.isDOMElement(headerElement)) {
           headerElement.style.top = 0;
         }
         break;
-      case "journals.plos.org":
-        document.body.style.height = "100%";
+      case 'journals.plos.org':
+        document.body.style.height = '100%';
         break;
       default:
         break;
@@ -238,24 +254,24 @@ class PubPeer {
   }
 
   getPublicationType(publication) {
-    let publicationType = "";
+    let publicationType = '';
     if (publication.updates && publication.updates.length) {
       switch (publication.updates[0].type) {
-        case "BLOGGED":
-        case "RETRACTED":
-        case "EXPRESSION OF CONCERN":
+        case 'BLOGGED':
+        case 'RETRACTED':
+        case 'EXPRESSION OF CONCERN':
           publicationType = publication.updates[0].type;
           break;
         default:
-          publicationType = "";
+          publicationType = '';
           break;
       }
       if (
-        publicationType === "BLOGGED" &&
+        publicationType === 'BLOGGED' &&
         (publication.total_comments > 0 ||
           this.isBiorxivOnlyComment(publication))
       ) {
-        this.type = publicationType = "";
+        this.type = publicationType = '';
       }
     }
     return publicationType;
@@ -265,20 +281,20 @@ class PubPeer {
     if (this.feedbacks.length === 1) {
       this.type = this.getPublicationType(this.feedbacks[0]);
     } else {
-      this.type = "";
+      this.type = '';
     }
   }
 
   generateNotificationTitle(publication, isTopBar = false) {
-    let title = "";
+    let title = '';
     const type = this.getPublicationType(publication);
     const titlePrefix =
       isTopBar && this.feedbacks.length === 1 && this.pagePmidOrDoiCount > 1
-        ? "An article on this page"
-        : "This article";
-    if (type === "BLOGGED") {
-      title = "Additional information on PubPeer";
-    } else if (type === "RETRACTED") {
+        ? 'An article on this page'
+        : 'This article';
+    if (type === 'BLOGGED') {
+      title = 'Additional information on PubPeer';
+    } else if (type === 'RETRACTED') {
       if (publication.total_comments === 0) {
         title = `${titlePrefix} has been retracted on PubPeer`;
       } else if (publication.total_comments === 1) {
@@ -286,7 +302,7 @@ class PubPeer {
       } else {
         title = `${titlePrefix} has been retracted and there are ${publication.total_comments} comments on PubPeer`;
       }
-    } else if (type === "EXPRESSION OF CONCERN") {
+    } else if (type === 'EXPRESSION OF CONCERN') {
       if (publication.total_comments === 0) {
         title = `${titlePrefix} has an expression of concern on PubPeer`;
       } else if (publication.total_comments === 1) {
@@ -299,20 +315,20 @@ class PubPeer {
   }
 
   getBackgroundColor(type) {
-    return type === "RETRACTED" || type === "EXPRESSION OF CONCERN"
-      ? "#EF5753"
-      : "#7ACCC8";
+    return type === 'RETRACTED' || type === 'EXPRESSION OF CONCERN'
+      ? '#EF5753'
+      : '#7ACCC8';
   }
 
   addTopBar() {
     const bgColor = this.getBackgroundColor(this.type);
     const articleCount = this.validPublicationCount;
-    const topbarClassName = "pp_articles";
+    const topbarClassName = 'pp_articles';
     if (
-      (articleCount > 0 || this.type !== "") &&
+      (articleCount > 0 || this.type !== '') &&
       document.getElementsByClassName(topbarClassName).length === 0
     ) {
-      let pElement = document.createElement("p");
+      let pElement = document.createElement('p');
       pElement.className = topbarClassName;
       pElement.style = `
         position: -webkit-sticky;
@@ -325,8 +341,8 @@ class PubPeer {
         padding: 5px 8px;
         font-size: 13px;
       `;
-      let hrefText = "";
-      if (this.type !== "") {
+      let hrefText = '';
+      if (this.type !== '') {
         const title = this.generateNotificationTitle(this.feedbacks[0], true);
         hrefText = `
           <a href="${
@@ -352,9 +368,38 @@ class PubPeer {
             `;
       }
       pElement.innerHTML = `
-        <img src="${this.url}/img/logo.svg" style="display:inline;vertical-align:middle;padding-right:8px;height:25px;background-color:${bgColor};"></img>
-          ${hrefText}
-        <div id="btn-close-pubpeer-article-summary" style="float:right;font-size:20px;line-height:24px;padding-right:10px;cursor: pointer;user-select:none;color:white;">×</div>
+        <div ${
+          this.publications.length > 1
+            ? 'id="pubpeer-toggle-subcontent" style="cursor: pointer"'
+            : ''
+        }>
+          <img src="${
+            this.url
+          }/img/logo.svg" style="display:inline;vertical-align:middle;padding-right:8px;height:25px;background-color:${bgColor};"></img>
+            ${hrefText}
+          <div id="btn-close-pubpeer-article-summary" style="float:right;font-size:20px;line-height:24px;padding-right:10px;cursor: pointer;user-select:none;color:white;">×</div>
+        </div>
+        ${
+          this.publications.length > 1
+            ? `<div id="pubpeer-header-subcontent" style="display: none;">${this.publications.reduce(
+                (html, publication) => {
+                  html += `
+                  <div>
+                    ${Sanitizer.escapeHTML`
+                    <a href="${
+                      publication.url + this.utm
+                    }" target="_blank" rel="noopener noreferrer" style="color:rgb(255,255,255);text-decoration:none;font-weight:500;vertical-align:middle;border: none;">
+                      ${publication.title}
+                    </a>
+                  `}
+                  </div>
+                `;
+                  return html;
+                },
+                ''
+              )}</div>`
+            : ''
+        }
       `;
       document.body.prepend(pElement);
       this.onAfterAddingTopBar();
@@ -365,16 +410,16 @@ class PubPeer {
     if (this.isBiorxivOnlyComment(publication)) {
       return;
     }
-    var googleSnippetDiv = "div.s",
-      bingSnippetDiv = "div.b_caption",
-      duckDuckGoSnippetDiv = "div.result__body",
+    var googleSnippetDiv = 'div.s',
+      bingSnippetDiv = 'div.b_caption',
+      duckDuckGoSnippetDiv = 'div.result__body',
       snippetsSelector = `${googleSnippetDiv}, ${bingSnippetDiv}, ${duckDuckGoSnippetDiv}, div, a, span`;
 
     const publicationType = this.getPublicationType(publication);
     const bgColor = this.getBackgroundColor(publicationType);
     let total_comments = publication.total_comments;
-    let hrefText = "";
-    if (publicationType !== "") {
+    let hrefText = '';
+    if (publicationType !== '') {
       hrefText = this.generateNotificationTitle(publication);
       if (total_comments > 0) {
         hrefText += ` (by: ${publication.users})`;
@@ -413,12 +458,12 @@ class PubPeer {
     for (let k = 0; k < elementsWithDois; k++) {
       //try each element that contains a matched DOI
       if (
-        aDoiElement[k].element.parentNode.getElementsByClassName("pp_comm")
+        aDoiElement[k].element.parentNode.getElementsByClassName('pp_comm')
           .length === 0 &&
         this.isVisible(aDoiElement[k].element)
       ) {
         aDoiElement[k].element.insertAdjacentHTML(
-          "afterend",
+          'afterend',
           Sanitizer.escapeHTML`<div class="pp_comm" style="margin: 1rem 0;display: flex;max-width: calc(100% - 16px);background-color: ${bgColor};padding: 5px 8px;font-size: 13px;border-radius:6px;">
             <img src="${this.url}/img/logo.svg" style="vertical-align:middle;padding-right:8px;height:25px;background-color: ${bgColor};"></img>
             <div style="align-items: center;display: flex;">
@@ -431,17 +476,20 @@ class PubPeer {
         if (publication.title) {
           if (!this.publicationIds.includes(publication.id)) {
             this.publicationIds.push(publication.id);
-            this.publications.push(publication);
           }
         }
       }
     }
-    this.validPublicationCount++;
+    if (!this.pubpeerUrls.includes(publication.url)) {
+      this.publications.push(publication);
+      this.pubpeerUrls.push(publication.url);
+      this.validPublicationCount++;
+    }
   }
 
   removeElements(selectors) {
     if (selectors.length) {
-      selectors.forEach(selector => {
+      selectors.forEach((selector) => {
         this.removeElementsBySelector(selector);
       });
     }
@@ -450,11 +498,11 @@ class PubPeer {
   removeElementsBySelector(selector) {
     var PPElements = document.querySelectorAll(selector);
     if (PPElements.length) {
-      PPElements.forEach(element => {
+      PPElements.forEach((element) => {
         if (element && element.remove && typeof element.remove === 'function') {
           element.remove();
         }
-      })
+      });
     }
   }
 }
